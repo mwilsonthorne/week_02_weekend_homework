@@ -8,7 +8,7 @@ def initialize(guest_name, guest_wallet)
 end
 
 def pay_entry_fee(fee)
-   @guest_wallet -= fee
+   @guest_wallet -= fee.room_fee()
 end
 
 end

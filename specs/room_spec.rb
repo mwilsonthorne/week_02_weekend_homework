@@ -6,15 +6,15 @@ require_relative("../song.rb")
 class RoomTest < MiniTest::Test
 
 def setup
-  @guest1 = Guest.new("Sandy")
-  guest2 = Guest.new("Keith")
-  guest3 = Guest.new("Pawel")
+  @guest1 = Guest.new("Sandy", 100)
+  guest2 = Guest.new("Keith", 20)
+  guest3 = Guest.new("Pawel", 10)
   guest_array = [@guest1, guest2, guest3]
   @song1 = Song.new("Out of Space", "The Prodigy")
   song2 = Song.new("Inch of Dust", "Future Islands")
   song3 = Song.new("Intro", "The XX")
   song_array = [@song1, song2, song3]
-  @room1 = Room.new(101, guest_array, song_array)
+  @room1 = Room.new(101, guest_array, song_array, 5)
 end
 
 def test_room_name
