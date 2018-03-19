@@ -6,9 +6,13 @@ require_relative("../song.rb")
 class GuestTest < MiniTest::Test
 
 def setup
-  songs = Song.new("Shout", "Tears for Fears")
-  @guest1 = Guest.new("Matthew", 10)
-  @room1 = Room.new(102, @guest1, songs, 5)
+  song = Song.new("Shout", "Tears for Fears")
+  @fav_song1 = Song.new("Out of Space", "The Prodigy")
+  fav_song2 = Song.new("Inch of Dust", "Future Islands")
+  fav_song3 = Song.new("Intro", "The XX")
+  fav_song_array = [@fav_song1, fav_song2, fav_song3]
+  @guest1 = Guest.new("Matthew", 10, "How Soon Is Now?")
+  @room1 = Room.new(102, @guest1, song, 5)
 end
 
 def test_guest_name
@@ -24,5 +28,14 @@ def test_pay_entry_fee()
   assert_equal(5, @guest1.guest_wallet)
 end
 
+def test_fav_song
+  assert_equal("How Soon Is Now?", @guest1.fav_song)
+end
+
+
+def test_fav_song_is_played()
+  @guest1.fav_song_is_played?(@fav_song1)
+  assert_equal("Whoo!", @guest1.fav_song_is_played?)
+end
 
 end

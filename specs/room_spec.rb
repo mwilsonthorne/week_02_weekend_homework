@@ -6,15 +6,17 @@ require_relative("../song.rb")
 class RoomTest < MiniTest::Test
 
 def setup
-  @guest1 = Guest.new("Sandy", 100)
-  guest2 = Guest.new("Keith", 20)
-  guest3 = Guest.new("Pawel", 10)
-  guest_array = [@guest1, guest2, guest3]
+  @guest1 = Guest.new("Sandy", 100, "Crazy Nights")
+  guest2 = Guest.new("Keith", 20, "Starman")
+  guest3 = Guest.new("Pawel", 10, "Is There Life on Mars?")
+  @guest_array = [@guest1, guest2, guest3]
+  @guest_array2 = [@guest1, guest2]
   @song1 = Song.new("Out of Space", "The Prodigy")
   song2 = Song.new("Inch of Dust", "Future Islands")
   song3 = Song.new("Intro", "The XX")
   song_array = [@song1, song2, song3]
-  @room1 = Room.new(101, guest_array, song_array, 5)
+  @room1 = Room.new(101, @guest_array, song_array, 5)
+  @room2 = Room.new(101, @guest_array2, song_array, 5)
 end
 
 def test_room_name
@@ -44,6 +46,17 @@ def test_remove_guest_from_room()
   assert_equal(2, @room1.room_occupants.length)
 end
 
+def test_room_at_capacity__returns_true
+  assert_equal(true, @room1.room_at_capacity?(@guest_array))
+end
 
+def test_room_at_capacity__returns_false
+  assert_equal(false, @room2.room_at_capacity?(@guest_array2))
+end
+
+def test_fav_song_is_played?
+  @guest1.fav_song_is_played?(@song1)
+  assert_equal("Whoo!", @room1.room_playlist)
+end
 
 end

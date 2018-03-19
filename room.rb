@@ -21,12 +21,18 @@ def remove_guest_from_room(guest)
   @room_occupants.delete(guest)
 end
 
+def room_at_capacity?(guest)
+    if guest.length >= 3
+      return true
+    else
+      return false
+    end
+end
 
-
-
-
-
-
-
+def fav_song_is_played?(song)
+  if song == @room_playlist
+    return "Whoo!"
+  end
+end
 
 end
